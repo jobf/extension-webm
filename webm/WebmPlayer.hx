@@ -133,7 +133,7 @@ class WebmPlayer extends Bitmap
 		}
 	}
 
-	public function stop(?pRestart:Bool = false)
+	public function stop(?pRestart:Bool = false, pDispose:Bool = false) 
 	{
 		if (playing)
 		{
@@ -143,8 +143,10 @@ class WebmPlayer extends Bitmap
 				this.sound.close();
 			}
 			playing = false;
-			if (!pRestart) dispatchEvent(new WebmEvent(WebmEvent.STOP));
-			dispose();
+			if (!pRestart)
+				dispatchEvent(new WebmEvent(WebmEvent.STOP));
+			if (pDispose)
+				dispose();
 		}
 	}
 	
